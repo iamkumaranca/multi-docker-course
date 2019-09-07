@@ -18,3 +18,17 @@ after_success:
   - docker push iamkumaranca/multi-nginx
   - docker push iamkumaranca/multi-server
   - docker push iamkumaranca/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ca-central-1
+  app: multi-docker-course 
+  env: MultiDockerCourse-env
+  bucket_name: elasticbeanstalk-ca-central-1-392102108912
+  bucket_path: docker-multi-course
+  on:
+      branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
